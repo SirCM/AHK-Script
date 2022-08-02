@@ -102,10 +102,10 @@ else
     MsgBox, 你输入了「%UserInput%」
     Loop 
     {
-    	if GetKeyState("XButton1")
+    	if GetKeyState("Shift")
     		break
     	Sleep, 3333
-    	if GetKeyState("XButton1")
+    	if GetKeyState("Shift")
     		break
     	Send, %UserInput%
     	Sleep, 3333
@@ -114,11 +114,14 @@ else
 	MsgBox, 复读机终止。
 return
 
+:*:a8::
+	Loop {
+Send, {Left}
+Sleep, 4000
+Send, {Right}
+Sleep, 4000
+}
+return
 
-; Loop %slp% {
-; 	if GetKeyState("Shift") {
-; 	sleep 1
-; 	return
-; }
-; }
+
 
