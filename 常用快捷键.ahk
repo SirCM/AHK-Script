@@ -18,12 +18,13 @@ return
 <!]::Send, {」}
 >![::Send, {〔}
 >!]::Send, {〕}
->!/::Send, {÷}
+
 !;::Send ◎
 !'::Send ◈
 
->!8::Send, {×}
->!4::Send, {¥}
+<!5::Send, {÷}
+<!8::Send, {×}
+<!4::Send, {¥}
 
 Capslock & j::Send, {Left}
 Capslock & k::Send, {Down}
@@ -39,19 +40,60 @@ Capslock & \::
 	Send, {Ctrl Up}
 return
 
+\::
+	Clipboard := "\"
+	Send {Ctrl Down}
+	Send v
+	Send {Ctrl Up}
+return
+
+!/::
+	Clipboard := "/"
+	Send {Ctrl Down}
+	Send v
+	Send {Ctrl Up}
+return
+
+<!.::
+	Clipboard := "."
+	Send {Ctrl Down}
+	Send v
+	Send {Ctrl Up}
+return
+
+<!,::
+	Clipboard := ","
+	Send {Ctrl Down}
+	Send v
+	Send {Ctrl Up}
+return
+
+>!,::
+	Clipboard := "<"
+	Send {Ctrl Down}
+	Send v
+	Send {Ctrl Up}
+return
+
+>!.::
+	Clipboard := ">"
+	Send {Ctrl Down}
+	Send v
+	Send {Ctrl Up}
+return
+
 Capslock & Enter::
 	Send, {End}
 	Send, {Enter}
 return
 
 
+
 ; 自动连点
 :*:z1::
-	SetKeyDelay, 0
+	; SetKeyDelay, 0
 	TrayTip, Start Autoclicking, Press Shift to Exit, 2
 	Sleep 500
-	; Gui, Add, Text, , 你好
-	; Gui, Show
 	Loop
 	{
 		if GetKeyState("Shift") {
@@ -59,6 +101,21 @@ return
 			break
 			}
 		Click
+	}
+return
+
+; 自动没那么快的连点
+:*:z2::
+	TrayTip, Start Autoclicking, Press Shift to Exit, 2
+	Sleep 500
+	Loop
+	{
+		if GetKeyState("Shift") {
+			TrayTip, Autocliking Stopped, Press z2 to start again
+			break
+			}
+		Click
+		Sleep 50
 	}
 return
 
@@ -87,7 +144,7 @@ return
 
 ; 输出日期、时间、名字
 :*:q0::
-	FormatTime , NowTime , , yyyy'-'MM'-'dd' 'HH':'mm' 哲'
+	FormatTime , NowTime , , yyyy'-'MM'-'dd' 'HH':'mm' SirCM'
 	Clipboard = %NowTime%
 	Send {Ctrl Down}
 	Send v
